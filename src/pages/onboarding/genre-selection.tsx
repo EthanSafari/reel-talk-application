@@ -45,13 +45,17 @@ const AllGenres: Genre[] = [
 
 const GenreSelection: FC = () => {
     return (
-        <>
-            {/* {
-                AllGenres.map(({ id, name, icon, isSelected }) => (
-
-        ))
-            } */}
-        </>
+        <div>
+            <ul>
+                {
+                    AllGenres.map(({ id, name, icon, isSelected }) => (
+                        <li key={id}>
+                            {`${icon} ${name} ${isSelected}`}
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
     );
 };
 
