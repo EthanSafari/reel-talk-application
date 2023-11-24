@@ -45,11 +45,11 @@ const AllGenres: Genre[] = [
 
 const GenreSelection: FC = () => {
     return (
-        <div>
-            <ul>
+        <div className="flex flex-col w-screen mt-4">
+            <ul className="flex flex-wrap w-10/12 justify-between">
                 {
                     AllGenres.map(({ id, name, icon, isSelected }) => (
-                        <li key={id}>
+                        <li key={id} className={`text-center container w-fit order-${id} bg-white`}>
                             {`${icon} ${name} ${isSelected}`}
                         </li>
                     ))
