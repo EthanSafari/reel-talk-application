@@ -67,7 +67,7 @@ const GenreSelection: FC = () => {
                 )}
                 {
                     allGenres.map(({ id, name, icon, isSelected }) => (
-                        <li key={id} className={`flex justify-evenly text-center container w-40 order-${id} bg-white p-2 m-2 text-black rounded border-2 border-stone-500 min-w-fit`}>
+                        <li key={id} className={`flex justify-evenly text-center container w-40 order-${id} ${!isSelected ?  'bg-white' : 'bg-yellow-500'} p-2 m-2 text-black rounded border-2 border-stone-500 min-w-fit`}>
                             <div>
                                 {icon}
                             </div>
