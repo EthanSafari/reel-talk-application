@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 type Genre = {
     id: number,
@@ -7,7 +7,7 @@ type Genre = {
     isSelected: boolean
 };
 
-const AllGenres: Genre[] = [
+const initialGenres: Genre[] = [
     { id: 1, name: 'Action', icon: '💥', isSelected: false },
     { id: 2, name: 'Adult', icon: '🔞', isSelected: false },
     { id: 3, name: 'Adventure', icon: '🪂', isSelected: false },
@@ -43,14 +43,19 @@ const AllGenres: Genre[] = [
     { id: 33, name: 'Western', icon: '🤠', isSelected: false }
 ];
 
+
+
 const GenreSelection: FC = () => {
+    const [allGenres, setAllGenres] = useState<Genre[]>(initialGenres);
+    const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
     return (
-        <div className="flex flex-col w-screen mt-4">
-            <ul className="flex flex-wrap w-10/12 justify-between">
+        <div className="flex flex-col w-screen mt-4 items-center bg-stone-800">
+            <ul className="flex flex-wrap w-10/12 justify-evenly">
                 {
-                    AllGenres.map(({ id, name, icon, isSelected }) => (
-                        <li key={id} className={`text-center container w-fit order-${id} bg-white`}>
-                            {`${icon} ${name} ${isSelected}`}
+                    allGenres.map(({ id, name, icon, isSelected }) => (
+                        <li key={id} className={`text-center container w-40 order-${id} bg-white p-2 m-2 text-black rounded border-2 border-stone-500`}>
+                            {`${icon} ${name}`}
+                            <input type='checkbox' id={`${id}`} checked={isSelected} className="ml-2" value={id} />
                         </li>
                     ))
                 }
