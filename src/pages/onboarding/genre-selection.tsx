@@ -56,7 +56,6 @@ const GenreSelection: FC = () => {
         setAllGenres(updatedGenres);
         setSelectedGenres([...updatedGenres.filter(genre => genre.isSelected)]);
     };
-    console.log(selectedGenres)
 
     return (
         <div className="flex flex-col w-screen mt-4 items-center bg-stone-800">
@@ -68,9 +67,14 @@ const GenreSelection: FC = () => {
                 )}
                 {
                     allGenres.map(({ id, name, icon, isSelected }) => (
-                        <li key={id} className={`text-center container w-40 order-${id} bg-white p-2 m-2 text-black rounded border-2 border-stone-500`}>
-                            {`${icon} ${name}`}
-                            <input type='checkbox' id={`${id}`} className="ml-2" value={id} checked={isSelected} onChange={(e) => toggleSelected(e, id, isSelected)} />
+                        <li key={id} className={`flex justify-evenly text-center container w-40 order-${id} bg-white p-2 m-2 text-black rounded border-2 border-stone-500 min-w-fit`}>
+                            <div>
+                                {icon}
+                            </div>
+                            <div className="mx-1">
+                                {name}
+                            </div>
+                            <input type='checkbox' id={`${id}`} className="" value={id} checked={isSelected} onChange={(e) => toggleSelected(e, id, isSelected)} />
                         </li>
                     ))
                 }
