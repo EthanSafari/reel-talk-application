@@ -47,8 +47,12 @@ const GenreSelection: FC = () => {
     const [allGenres, setAllGenres] = useState<Genre[]>(initialGenres);
     const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
 
-    const toggleSelected = (e: ChangeEvent<HTMLInputElement>, id: number): void => {
-        const updatedGenres = allGenres.map(genre => genre.id === id ? { ...genre, isSelected: e.target.checked } : genre);
+    const toggleSelected = (e: ChangeEvent<HTMLInputElement>, id: number, isSelected: boolean): void => {
+        let updatedGenres: Genre[] = [];
+        if (!isSelected && selectedGenres.length <= 4)
+            updatedGenres = allGenres.map(genre => genre.id === id ? { ...genre, isSelected: true } : genre);
+        else
+            updatedGenres = allGenres.map(genre => genre.id === id ? { ...genre, isSelected: false } : genre);
         setAllGenres(updatedGenres);
         setSelectedGenres([...updatedGenres.filter(genre => genre.isSelected)]);
     };
@@ -66,7 +70,7 @@ const GenreSelection: FC = () => {
                     allGenres.map(({ id, name, icon, isSelected }) => (
                         <li key={id} className={`text-center container w-40 order-${id} bg-white p-2 m-2 text-black rounded border-2 border-stone-500`}>
                             {`${icon} ${name}`}
-                            <input type='checkbox' id={`${id}`} className="ml-2" value={id} checked={isSelected} onChange={(e) => toggleSelected(e, id)} />
+                            <input type='checkbox' id={`${id}`} className="ml-2" value={id} checked={isSelected} onChange={(e) => toggleSelected(e, id, isSelected)} />
                         </li>
                     ))
                 }
