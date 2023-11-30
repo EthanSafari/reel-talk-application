@@ -6,7 +6,7 @@ const Onboarding: FC = () => {
         <div>
             <Navbar />
         </div>
-    )
+    );
 };
 
 export default Onboarding;

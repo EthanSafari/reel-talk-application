@@ -1,6 +1,6 @@
 import React, { FC, useState, ChangeEvent } from "react";
 
-type Genre = {
+export type Genre = {
     id: number,
     name: string,
     icon: string,
