@@ -3,7 +3,7 @@ import SearchBar from "./searchbar";
 
 const Navbar: FC = () => {
     return (
-        <div className="w-screen h-12 bg-white flex flex-row text-black justify-evenly items-center">
+        <div className="w-screen h-12 bg-white flex flex-row text-black justify-evenly items-center cursor-pointer hover:cursor-not-allowed">
             <div className="flex w-screen px-4">
                 <div className="w-1/3 flex justify-center">
                     <div className="mr-4 flex justify-center items-center">
