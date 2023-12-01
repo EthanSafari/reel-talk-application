@@ -1,4 +1,5 @@
-import React, { FC, useState, ChangeEvent, useEffect } from "react";
+import { GenreContext } from "@/context/Genre";
+import React, { FC, useState, ChangeEvent, useEffect, useContext } from "react";
 
 type Genre = {
     id: number,
@@ -11,30 +12,59 @@ interface SelectionProps {
     genres: Genre[];
 };
 
-const GenreSelection: FC<SelectionProps> = ({ genres }) => {
-    const [allGenres, setAllGenres] = useState<Genre[]>(genres);
-    const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
+const GenreSelection: FC<SelectionProps> = () => {
+    const context = useContext(GenreContext);
+
+    if (!context)
+        return null;
+
+    const { allGenres, setAllGenres, selectedGenres, setSelectedGenres, unselectedGenres, setUnselectedGenres } = context;
+
+    const genreList = Object.values(allGenres);
+
+    const [selectedGenreLength, setSelectedGenreLength] = useState<number>(0);
 
     const toggleSelected = (e: ChangeEvent<HTMLInputElement>, id: number, isSelected: boolean): void => {
-        let updatedGenres: Genre[] = [];
-        if (!isSelected && selectedGenres.length <= 4)
-            updatedGenres = allGenres.map(genre => genre.id === id ? { ...genre, isSelected: true } : genre);
-        else
-            updatedGenres = allGenres.map(genre => genre.id === id ? { ...genre, isSelected: false } : genre);
-        setAllGenres(updatedGenres);
-        setSelectedGenres(updatedGenres.filter(genre => genre.isSelected));
+        if (!isSelected && selectedGenreLength <= 4) {
+            allGenres[id].isSelected = true;
+
+            const newSelectedState = {...selectedGenres};
+            newSelectedState[id] = allGenres[id];
+            newSelectedState[id].isSelected = true;
+
+            const newUnselectedState = {...unselectedGenres};
+            delete newUnselectedState[id];
+
+            setUnselectedGenres(newUnselectedState);
+            setSelectedGenres(newSelectedState);
+            setSelectedGenreLength(selectedGenreLength + 1);
+
+        } else if (isSelected && selectedGenreLength >= 1) {
+            allGenres[id].isSelected = false;
+
+            const newUnselectedState = {...unselectedGenres};
+            newUnselectedState[id] = allGenres[id];
+            newUnselectedState[id].isSelected = false;
+
+            const newSelectedState = {...selectedGenres};
+            delete newSelectedState[id];
+
+            setSelectedGenres(newSelectedState);
+            setUnselectedGenres(newUnselectedState);
+            setSelectedGenreLength(selectedGenreLength - 1);
+        }
     };
 
     return (
         <div className="flex flex-col w-screen mt-4 items-center bg-stone-800">
             <ul className="flex flex-wrap w-10/12 justify-evenly">
-                {/* <div>
+                <div>
                     {
-                        selectedGenres.length > 0 ? (
+                        selectedGenres ? (
                             <>
                                 <div>Selected Genres:</div>
                                 <ul>
-                                    {selectedGenres.map(({ id, name, icon, isSelected }) => (
+                                    {Object.values(selectedGenres).map(({ id, name, icon, isSelected }) => (
                                         <li key={id} className={`flex justify-evenly text-center container w-40 order-${id} ${!isSelected ? 'bg-white' : 'bg-yellow-500'} p-2 m-2 text-black rounded border-2 border-stone-500 min-w-fit`}>
                                             <div>
                                                 {icon}
@@ -55,12 +85,12 @@ const GenreSelection: FC<SelectionProps> = ({ genres }) => {
                             </div>
                         )
                     }
-                </div> */}
+                </div>
                 <div>
-                    Choices Remaining: {5 - selectedGenres.length}
+                    Choices Remaining: {5 - selectedGenreLength}
                 </div>
                 {
-                    allGenres.map(({ id, name, icon, isSelected }) => (
+                    Object.values(unselectedGenres).map(({ id, name, icon, isSelected }) => (
                         <li key={id} className={`flex justify-evenly text-center container w-40 order-${id} ${!isSelected ? 'bg-white' : 'bg-yellow-500'} p-2 m-2 text-black rounded border-2 border-stone-500 min-w-fit`}>
                             <div>
                                 {icon}

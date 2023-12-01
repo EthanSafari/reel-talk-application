@@ -1,6 +1,7 @@
 import GenreSelection from "@/components/genre-selection";
 import Navbar from "@/components/navbar";
 import SearchBar from "@/components/searchbar";
+import { GenreProvider } from "@/context/Genre";
 import React, { FC, useState, ChangeEvent } from "react";
 
 export type Genre = {
@@ -85,7 +86,9 @@ const GenreSelectionPage: FC = () => {
         // </div>
         <>
             <Navbar />
-            <SearchBar forOnboarding={true} GenreComponent={GenreSelection} />
+            <GenreProvider>
+                <SearchBar forOnboarding={true} GenreComponent={GenreSelection} />
+            </GenreProvider>
         </>
     );
 };
