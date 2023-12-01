@@ -49,9 +49,28 @@ const GenreSelection: FC<SearchedGenreProps> = ({ searchedGenres }) => {
 
     if (searchedGenres.length < 33) {
         return (
-            <div className="flex flex-col w-screen mt-4 items-center bg-stone-800">
-                <GenreList genres={searchedGenres} func={toggleSelected} />
-            </div>
+            <>
+                <div>
+                    {
+                        selectedGenreLength > 0 ? (
+                            <div className="flex flex-col items-center my-4">
+                                <div>Selected Genres:</div>
+                                <GenreList genres={Object.values(selectedGenres)} func={toggleSelected} />
+                            </div>
+                        ) : (
+                            <div className="flex flex-col items-center my-4">
+                                No Genres Selected, Please Select Preferred Genres.
+                            </div>
+                        )
+                    }
+                    <div className="flex flex-col items-center my-4">
+                        Choices Remaining: {5 - selectedGenreLength}
+                    </div>
+                </div>
+                <div className="flex flex-col w-screen mt-4 items-center bg-stone-800">
+                    <GenreList genres={searchedGenres} func={toggleSelected} />
+                </div>
+            </>
         );
     };
     return (
