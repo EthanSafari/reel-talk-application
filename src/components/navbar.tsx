@@ -6,14 +6,17 @@ const Navbar: FC = () => {
         <div className="w-screen h-12 bg-white flex flex-row text-black justify-evenly items-center">
             <div className="flex w-screen px-4">
                 <div className="w-1/3 flex justify-center">
-                    <div>
+                    <div className="mr-4 flex justify-center items-center">
+                    <i className="fa-solid fa-film"></i>
+                    <div className="ml-1 flex items-center font-semibold text-lg">
                         REEL TALK
                     </div>
-                    <div className="flex justify-between">
+                    </div>
+                    <div className="flex justify-between items-center text-zinc-600">
                         <div>
                             Browse
                         </div>
-                        <div>
+                        <div className="mx-3">
                             Community
                         </div>
                         <div>
@@ -22,17 +25,13 @@ const Navbar: FC = () => {
                     </div>
                 </div>
                 <SearchBar forOnboarding={false} />
-                <div className="flex w-1/3 justify-center items-center">
+                <div className="flex w-1/3 justify-center items-center text-zinc-600">
                     <div>
                         DemoUser
                     </div>
-                    <div className="flex justify-between">
-                        <div className="border-full border-black border-solid border-black-solid">
-                            <i className="fa-solid fa-user"></i>
-                        </div>
-                        <div>
-                            DROPDOWN
-                        </div>
+                    <div className="flex justify-around w">
+                            <i className="fa-solid fa-user mr-2 ml-4"></i>
+                        <i className="fa-solid fa-chevron-down flex justify-center items-center"></i>
                     </div>
                 </div>
             </div>
