@@ -1,27 +1,12 @@
-import { GenreContext } from "@/context/Genre";
-import { Genre } from "@/pages/onboarding/genre-selection";
-import React, { FC, useState, ChangeEvent, useEffect, ComponentType, useContext } from "react";
+import React, { FC, useState, ComponentType } from "react";
 
 interface SearchBarProps {
     forOnboarding: boolean,
-    GenreComponent?: ComponentType<{genres: Genre[]}>
+    GenreComponent?: ComponentType
 };
 
 const SearchBar: FC<SearchBarProps> = ({ forOnboarding, GenreComponent }) => {
-    const context = useContext(GenreContext);
-
-    if (!context)
-        return null;
-
-    const {allGenres} = context;
-
     const [activeSearch, setActiveSearch] = useState<string>('');
-    const [genreSearch, setGenreSearch] = useState<Genre[]>(Object.values(allGenres));
-
-
-    useEffect(() => {
-        setGenreSearch(Object.values(allGenres).filter(genre => genre.name.toLowerCase().includes(activeSearch.toLowerCase())));
-    }, [activeSearch]);
 
     return (
         <>
@@ -39,7 +24,7 @@ const SearchBar: FC<SearchBarProps> = ({ forOnboarding, GenreComponent }) => {
                 />
             </div>
             {forOnboarding && GenreComponent && (
-                <GenreComponent genres={genreSearch}/>
+                <GenreComponent />
             )}
         </>
     )

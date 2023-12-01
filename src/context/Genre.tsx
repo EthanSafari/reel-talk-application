@@ -1,6 +1,6 @@
 import { createContext, useState, FC, ReactNode, SetStateAction, Dispatch } from 'react';
 
-type Genre = {
+export type Genre = {
     id: number,
     name: string,
     icon: string,
