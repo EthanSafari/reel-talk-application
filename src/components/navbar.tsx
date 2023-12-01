@@ -22,13 +22,13 @@ const Navbar: FC = () => {
                     </div>
                 </div>
                 <SearchBar forOnboarding={false} />
-                <div className="flex w-1/3 justify-center">
+                <div className="flex w-1/3 justify-center items-center">
                     <div>
-                        USERNAME
+                        DemoUser
                     </div>
                     <div className="flex justify-between">
-                        <div>
-                            User IMG
+                        <div className="border-full border-black border-solid border-black-solid">
+                            <i className="fa-solid fa-user"></i>
                         </div>
                         <div>
                             DROPDOWN
