@@ -54,7 +54,7 @@ const GenreSelection: FC = () => {
         else
             updatedGenres = allGenres.map(genre => genre.id === id ? { ...genre, isSelected: false } : genre);
         setAllGenres(updatedGenres);
-        setSelectedGenres([...updatedGenres.filter(genre => genre.isSelected)]);
+        setSelectedGenres(updatedGenres.filter(genre => genre.isSelected));
     };
 
     return (
