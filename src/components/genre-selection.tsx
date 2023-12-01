@@ -15,10 +15,6 @@ const GenreSelection: FC<SelectionProps> = ({ genres }) => {
     const [allGenres, setAllGenres] = useState<Genre[]>(genres);
     const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
 
-    useEffect(() => {
-        setAllGenres(genres);
-    }, [genres]);
-
     const toggleSelected = (e: ChangeEvent<HTMLInputElement>, id: number, isSelected: boolean): void => {
         let updatedGenres: Genre[] = [];
         if (!isSelected && selectedGenres.length <= 4)
