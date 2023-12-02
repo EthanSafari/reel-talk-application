@@ -1,18 +1,18 @@
-# Reel Talk Coding Challenge 🎥
+# 🎥 Reel Talk Coding Challenge
 
 ## Getting Started:
 
 _TO START, CLONE THIS REPO AND INSTALL DEPENDENCIES VIA:_
 
-> - [x] git clone https://github.com/EthanSafari/reel-talk-application.git && cd reel-talk-application && npm install
+> 🎬 git clone https://github.com/EthanSafari/reel-talk-application.git && cd reel-talk-application && npm install
 
 _AFTER THAT, RUN THE DEVELOPMENT SERVER WITH:_
 
-> - [x] npm run dev
+> 🎬 npm run dev
 
 _WHEN YOU HAVE THE DEVELOPMENT SERVER UP AND RUNNING, IT SHOULD BE HOSTED ON PORT 3000. YOU CAN THEN NAVIGATE TO YOUR FAVORITE BROWSER AT THE URL:_
 
-> - [x] http://localhost:3000/onboarding/genre-selection
+> 🎬 http://localhost:3000/onboarding/genre-selection
 
 _WHICH WILL TAKE YOU TO THE "FAVORITE GENRE SELECTION" PART OF THE APPLICATION ONBOARDING PROCESS_
 
