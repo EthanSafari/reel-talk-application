@@ -1,5 +1,5 @@
 import { Genre, GenreContext } from "@/context/Genre";
-import React, { FC, useState, ChangeEvent, useContext } from "react";
+import React, { FC, useState, useContext } from "react";
 import GenreList from "./genre-list";
 
 interface SearchedGenreProps {
@@ -13,6 +13,7 @@ const GenreSelection: FC<SearchedGenreProps> = ({ searchedGenres }) => {
     const { allGenres, setAllGenres, selectedGenres, setSelectedGenres, unselectedGenres, setUnselectedGenres } = context;
 
     const [selectedGenreLength, setSelectedGenreLength] = useState<number>(0);
+    const [showMore, setShowMore] = useState<boolean>(false);
 
     const toggleSelected = (id: number, isSelected: boolean): void => {
         if (!isSelected && selectedGenreLength <= 4) {
@@ -46,6 +47,9 @@ const GenreSelection: FC<SearchedGenreProps> = ({ searchedGenres }) => {
             setSelectedGenreLength(selectedGenreLength - 1);
         }
     };
+
+    const genresArr: Genre[] = Object.values(unselectedGenres);
+    const firstHalfGenres: Genre[] = genresArr.slice(0, Math.ceil(genresArr.length / 2));
 
     if (searchedGenres.length < 33) {
         return (
@@ -89,10 +93,16 @@ const GenreSelection: FC<SearchedGenreProps> = ({ searchedGenres }) => {
                     )
                 }
             </div>
-            <div className="flex flex-col items-center my-4">
+            <div className="flex flex-col items-center mb-4">
                 Choices Remaining: {5 - selectedGenreLength}
             </div>
-            <GenreList genres={Object.values(unselectedGenres)} func={toggleSelected} />
+            <GenreList genres={!showMore ? firstHalfGenres : genresArr} func={toggleSelected} />
+            {!showMore &&
+                <button>
+                    <div onClick={() => setShowMore(!showMore)}>Show All</div>
+                    <i className="fa-solid fa-chevron-down flex justify-center items-center"></i>
+                </button>
+            }
         </div>
     );
 };

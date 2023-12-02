@@ -9,6 +9,9 @@ const GenreSelectionPage: FC = () => {
     return (
         <div className={`bg-stone-800 h-screen w-screen flex flex-col items-center`}>
             <Navbar />
+            <div className="text-xl mt-4">
+                Select your top 5 genres for movies and TV 
+            </div>
             <GenreProvider>
                 <SearchBar forOnboarding={true} GenreComponent={GenreSelection} />
             </GenreProvider>

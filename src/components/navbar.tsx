@@ -7,10 +7,10 @@ const Navbar: FC = () => {
             <div className="flex w-screen px-4">
                 <div className="w-1/3 flex justify-center">
                     <div className="mr-4 flex justify-center items-center">
-                    <i className="fa-solid fa-film"></i>
-                    <div className="ml-1 flex items-center font-semibold text-lg">
-                        REEL TALK
-                    </div>
+                        <i className="fa-solid fa-film"></i>
+                        <div className="ml-1 flex items-center font-semibold text-lg">
+                            REEL TALK
+                        </div>
                     </div>
                     <div className="flex justify-between items-center text-zinc-600">
                         <div>
@@ -30,7 +30,7 @@ const Navbar: FC = () => {
                         DemoUser
                     </div>
                     <div className="flex justify-around w">
-                            <i className="fa-solid fa-user mr-2 ml-4"></i>
+                        <i className="fa-solid fa-user mr-2 ml-4"></i>
                         <i className="fa-solid fa-chevron-down flex justify-center items-center"></i>
                     </div>
                 </div>
