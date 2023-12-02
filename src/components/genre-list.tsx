@@ -9,7 +9,7 @@ interface GenreProps {
 const GenreList: FC<GenreProps> = ({ genres, func }) => {
     return (
         <>
-            <ul className="flex flex-wrap w-10/12 justify-evenly">
+            <ul className="flex flex-wrap w-10/12 gap-0 justify-center">
                 {genres.map(({ id, name, icon, isSelected }) => (
                     <li key={id} className={`flex justify-evenly text-center container w-40 order-${id} ${!isSelected ? 'bg-white' : 'bg-yellow-500'} p-2 m-2 text-black rounded border-2 border-stone-500 min-w-fit`}>
                         <div>
